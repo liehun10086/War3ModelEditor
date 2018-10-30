@@ -304,7 +304,7 @@ std::string COMMON::GetProgramDirectory() CONST
 	{
 		Directory = Directory.substr(0, i);
 	}
-	Directory = "F:\\Warcraft";
+	Directory = "C:\\WorkSpace\\Warcraft3\\Warcraft III Frozen Throne";
 	return Directory;
 }
 
