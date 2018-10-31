@@ -348,7 +348,7 @@ BOOL REGISTER::FindWarcraftDirectory()
 	CloseKey(SoftwareKey);
 
 	if(!Result) WarcraftDirectory = Common.GetProgramDirectory();
-	WarcraftDirectory ="C:\\WorkSpace\\Warcraft3\\Warcraft III Frozen Throne";
+	WarcraftDirectory ="F:\\Warcraft";
 	return TRUE;
 }
 

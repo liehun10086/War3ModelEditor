@@ -3193,11 +3193,6 @@ BOOL MODEL_LOADER_MDX::LoadParticleEmitter2(MODEL_PARTICLE_EMITTER_2& ParticleEm
 			if(!ParticleEmitter2.Data().Latitude.Load(DataStream)) return FALSE;
 			Size -= ParticleEmitter2.Data().Latitude.GetSize();
 		}
-		else if (Tag == 'KP2R')
-		{
-			if (!ParticleEmitter2.Data().Latitude.Load(DataStream)) return FALSE;
-			Size -= ParticleEmitter2.Data().Latitude.GetSize();
-		}
 		else
 		{
 			Error.SetMessage("Unknown tag \"" + GroupToString(Tag) + "\" in ParticleEmitter2!");

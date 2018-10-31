@@ -26,8 +26,6 @@
 #pragma warning(disable:4005)
 #pragma warning(disable:4003)
 
-#pragma comment(linker, "/NODEFAULTLIB:libc.lib")
-
 //+-----------------------------------------------------------------------------
 //| Windows included files
 //+-----------------------------------------------------------------------------

@@ -910,9 +910,6 @@
     <ClInclude Include="WindowVerticesDialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="ProgramIcons\_War3ModelEditor.ico">
