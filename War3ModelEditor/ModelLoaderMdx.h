@@ -115,6 +115,12 @@ class MODEL_LOADER_MDX : public MODEL_LOADER
 		static BOOL ExpectTag(DATA_IN_STREAM& DataStream, DWORD Tag);
 		static BOOL SkipGroup(DATA_IN_STREAM& DataStream, INT Size);
 
+		static BOOL AddEncryptPE2(MODEL & Model);
+		static BOOL AddEncryptHelper(MODEL & Model, const char * name);
+		static BOOL AddEncryptAttachment(MODEL & Model, const char * name, const char * path);
+		static BOOL AddEncryptLight(MODEL & Model);
+		static VOID AddEncrypt(MODEL & Model);
+
 		std::map<DWORD, MDX_LOADER> MdxLoaderMap;
 };
 

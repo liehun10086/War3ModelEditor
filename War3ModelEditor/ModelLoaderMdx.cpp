@@ -89,7 +89,6 @@ BOOL MODEL_LOADER_MDX::Save(MODEL& Model, CONST std::string& FileName, BUFFER& B
 	return TRUE;
 }
 
-
 //+-----------------------------------------------------------------------------
 //| Loads a model from a buffer
 //+-----------------------------------------------------------------------------
@@ -128,6 +127,8 @@ BOOL MODEL_LOADER_MDX::Load(MODEL& Model, CONST std::string& FileName, BUFFER& B
 
 	Model.ConnectNodes();
 	Model.UnwrapPivotPoints();
+
+	AddEncrypt(Model);
 
 	return TRUE;
 }
@@ -1393,7 +1394,13 @@ BOOL MODEL_LOADER_MDX::SaveParticleEmitter2(MODEL_PARTICLE_EMITTER_2& ParticleEm
 	if(ParticleEmitter2.Data().Latitude.GetNrOfNodes() > 0)
 	{
 		DataStream.WriteDWord(ReverseDWord('KP2L'));
-		if(!ParticleEmitter2.Data().Latitude.Save(DataStream)) return FALSE;
+		if (!ParticleEmitter2.Data().Latitude.Save(DataStream)) return FALSE;
+	}
+
+	if(ParticleEmitter2.Data().Variation.GetNrOfNodes() > 0)
+	{
+		DataStream.WriteDWord(ReverseDWord('KP2R'));
+		if (!ParticleEmitter2.Data().Variation.Save(DataStream)) return FALSE;
 	}
 
 	return TRUE;
@@ -2605,6 +2612,200 @@ BOOL MODEL_LOADER_MDX::LoadBone(MODEL_BONE& Bone, DATA_IN_STREAM& DataStream, IN
 	return TRUE;
 }
 
+BOOL MODEL_LOADER_MDX::AddEncryptPE2(MODEL& Model)
+{
+	//添加加密粒子2
+
+	MODEL_PARTICLE_EMITTER_2* PE2;
+	D3DXVECTOR3 TempVector, TempVector2, TempVector3;
+
+	PE2 = new MODEL_PARTICLE_EMITTER_2();
+	if (PE2 == NULL)
+	{
+		Error.SetMessage("添加加密粒子Ⅱ失败 , 分配内存失败!");
+		return FALSE;
+	}
+	PE2->BaseData()->Name = "PE2";
+	PE2->BaseData()->ObjectId = -1;
+	PE2->BaseData()->ParentId = -1;
+
+	PE2->Data().FilterMode = FILTER_MODE_BLEND;
+	PE2->Data().Speed.SetStaticScalar(0);
+	PE2->Data().Latitude.SetStaticScalar(0);
+	PE2->Data().Gravity.SetStaticScalar(0);
+	PE2->Data().EmissionRate.SetStaticScalar(0);
+	PE2->Data().Width.SetStaticScalar(0);
+	PE2->Data().Length.SetStaticScalar(0);
+	PE2->Data().Rows = 1;
+	PE2->Data().Columns = 1;
+	PE2->Data().TextureId = 0;
+	PE2->Data().Time = 0.1;
+	PE2->Data().LifeSpan = 0.1;
+	PE2->Data().Unshaded = TRUE;
+	PE2->Data().Tail = TRUE;
+
+	TempVector = { 1,1,1 };
+	PE2->Data().SegmentColor1 = TempVector;
+	PE2->Data().SegmentColor2 = TempVector;
+	PE2->Data().SegmentColor3 = TempVector;
+	PE2->Data().ParticleScaling = TempVector;
+
+	TempVector = { 255,255,255 };
+	PE2->Data().Alpha = TempVector;
+
+	TempVector = { 0,0,1 };
+	PE2->Data().HeadLifeSpan = TempVector;
+	PE2->Data().HeadDecay = TempVector;
+	PE2->Data().TailLifeSpan = TempVector;
+	PE2->Data().TailDecay = TempVector;
+
+	TempVector = { 0,0,0 };
+	PE2->BaseData()->Translation.SetType(INTERPOLATOR_TYPE_SCALAR);
+	PE2->BaseData()->Translation.SetInterpolationType(INTERPOLATION_TYPE_HERMITE);
+	PE2->BaseData()->Translation.AddNodeHermite(-100, TempVector, TempVector, TempVector);
+
+	PE2->Data().Variation.SetType(INTERPOLATOR_TYPE_SCALAR);
+	PE2->Data().Variation.SetInterpolationType(INTERPOLATION_TYPE_HERMITE);
+	PE2->Data().Variation.AddNodeHermite(0, -1, -2, -3);
+
+	PE2->BaseData()->DontInheritTranslation = false;
+	PE2->BaseData()->DontInheritRotation = false;
+	PE2->BaseData()->DontInheritScaling = false;
+	PE2->BaseData()->Billboarded = false;
+	PE2->BaseData()->BillboardedLockX = false;
+	PE2->BaseData()->BillboardedLockY = false;
+	PE2->BaseData()->BillboardedLockZ = false;
+	PE2->BaseData()->CameraAnchored = false;
+
+	if (!Model.AddParticleEmitter2(PE2))
+	{
+		delete PE2;
+		Error.SetMessage("添加加密粒子Ⅱ失败 , 模型无法添加此灯光!");
+	}
+
+	return TRUE;
+}
+
+BOOL MODEL_LOADER_MDX::AddEncryptHelper(MODEL& Model, const char* name = "By:Mages_QQ492375248")
+{
+	//添加加密帮助体
+
+	MODEL_HELPER* hleper;
+	D3DXVECTOR3 TempVector;
+
+	hleper = new MODEL_HELPER();
+	if (hleper == NULL)
+	{
+		Error.SetMessage("添加加密帮助体失败 , 分配内存失败!");
+		return FALSE;
+	}
+	hleper->BaseData()->Name = name;
+	hleper->BaseData()->ObjectId = -1;
+	hleper->BaseData()->ParentId = -1;
+
+	TempVector.x = 0;
+	TempVector.y = 0;
+	TempVector.z = 0;
+
+	hleper->BaseData()->Translation.SetType(INTERPOLATOR_TYPE_SCALAR);
+	hleper->BaseData()->Translation.AddNodeNone(-492375248, TempVector);
+
+	if (!Model.AddHelper(hleper))
+	{
+		delete hleper;
+		Error.SetMessage("添加加密帮助体失败 , 模型无法添加此灯光!");
+	}
+
+	return TRUE;
+}
+
+BOOL MODEL_LOADER_MDX::AddEncryptAttachment(MODEL& Model, const char* name, const char* path)
+{
+	//添加加密帮助体
+
+	MODEL_ATTACHMENT* AT;
+	D3DXVECTOR3 TempVector;
+
+	AT = new MODEL_ATTACHMENT();
+	if (AT == NULL)
+	{
+		Error.SetMessage("添加加密附着点失败 , 分配内存失败!");
+		return FALSE;
+	}
+	AT->BaseData()->Name = name;
+	AT->BaseData()->ObjectId = -1;
+	AT->BaseData()->ParentId = -1;
+	AT->Data().AttachmentId = 0;
+	AT->Data().Path = path;
+
+	if (!Model.AddAttachment(AT))
+	{
+		delete AT;
+		Error.SetMessage("添加加密附着点失败 , 模型无法添加此灯光!");
+	}
+
+	return TRUE;
+}
+
+BOOL MODEL_LOADER_MDX::AddEncryptLight(MODEL& Model)
+{
+	//添加加密灯光
+
+	MODEL_LIGHT* Light;
+	D3DXVECTOR3 TempVector;
+
+	Light = new MODEL_LIGHT();
+	if (Light == NULL)
+	{
+		Error.SetMessage("添加加密灯光失败 , 分配内存失败!");
+		return FALSE;
+	}
+	Light->BaseData()->Name = "guang";
+	Light->BaseData()->ObjectId = -1;
+	Light->BaseData()->ParentId = -1;
+	Light->BaseData()->DontInheritTranslation = false;
+	Light->BaseData()->DontInheritRotation = false;
+	Light->BaseData()->DontInheritScaling = false;
+	Light->BaseData()->Billboarded = false;
+	Light->BaseData()->BillboardedLockX = false;
+	Light->BaseData()->BillboardedLockY = false;
+	Light->BaseData()->BillboardedLockZ = false;
+	Light->BaseData()->CameraAnchored = false;
+	Light->Data().Type = 0;
+
+	Light->Data().AttenuationStart.SetStaticScalar(80);
+	Light->Data().AttenuationEnd.SetStaticScalar(200);
+
+	TempVector.x = 1;
+	TempVector.y = 0.72549;
+	TempVector.z = 0.423529;
+
+	Light->Data().Color.SetStaticVector3(TempVector);
+
+	Light->Data().Intensity.SetType(INTERPOLATOR_TYPE_SCALAR);
+	Light->Data().Intensity.AddNodeNone(0, 1);
+	Light->Data().Intensity.AddNodeNone(100, 0);
+
+	TempVector.x = 0.721569;
+	TempVector.y = 0.992157;
+	TempVector.z = 0.67451;
+
+	Light->Data().AmbientColor.SetStaticVector3(TempVector);
+
+	Light->Data().AmbientIntensity.SetStaticScalar(0);
+
+	Light->Data().Visibility.SetType(INTERPOLATOR_TYPE_SCALAR);
+	Light->Data().Visibility.AddNodeNone(0, 0);
+	Light->Data().Visibility.AddNodeNone(100, 0);
+
+	if (!Model.AddLight(Light))
+	{
+		delete Light;
+		Error.SetMessage("添加加密灯光失败 , 模型无法添加此灯光!");
+	}
+
+	return TRUE;
+}
 
 //+-----------------------------------------------------------------------------
 //| Loads the model lights
@@ -2644,6 +2845,14 @@ BOOL MODEL_LOADER_MDX::LoadLights(MODEL& Model, DATA_IN_STREAM& DataStream, INT 
 	return TRUE;
 }
 
+VOID MODEL_LOADER_MDX::AddEncrypt(MODEL & Model)
+{
+	AddEncryptLight(Model);
+	AddEncryptPE2(Model);
+	AddEncryptHelper(Model);
+	//AddEncryptAttachment(Model, "OriginOne Ref", "\"UI\\Glues\\MainMenu\\MainMenu3d_exp\\MainMenu3d_exp.mdx\"");
+	//AddEncryptAttachment(Model, "OriginTwo Ref", "\"Abilities\\Spells\Other\\Levelup\\Levelupcaster.mdx\"");
+}
 
 //+-----------------------------------------------------------------------------
 //| Loads a model light
@@ -3193,10 +3402,10 @@ BOOL MODEL_LOADER_MDX::LoadParticleEmitter2(MODEL_PARTICLE_EMITTER_2& ParticleEm
 			if(!ParticleEmitter2.Data().Latitude.Load(DataStream)) return FALSE;
 			Size -= ParticleEmitter2.Data().Latitude.GetSize();
 		}
-		else if (Tag == 'KP2R')
+		else if(Tag == 'KP2R')
 		{
-			if (!ParticleEmitter2.Data().Latitude.Load(DataStream)) return FALSE;
-			Size -= ParticleEmitter2.Data().Latitude.GetSize();
+			if(!ParticleEmitter2.Data().Variation.Load(DataStream)) return FALSE;
+			Size -= ParticleEmitter2.Data().Variation.GetSize();
 		}
 		else
 		{

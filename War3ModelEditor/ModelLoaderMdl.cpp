@@ -1692,7 +1692,7 @@ BOOL MODEL_LOADER_MDL::SaveParticleEmitter2(MODEL_PARTICLE_EMITTER_2& ParticleEm
 		TokenStream.WriteTab();
 		TokenStream.WriteLine("Tail,");
 	}
-	else if (ParticleEmitter2.Data().PriorityPlane != 0)
+	if (ParticleEmitter2.Data().PriorityPlane != 0)
 	{
 		TokenStream.WriteTab();
 		TokenStream.WriteWord("PriorityPlane ");
@@ -4332,7 +4332,7 @@ BOOL MODEL_LOADER_MDL::LoadParticleEmitter2(MODEL_PARTICLE_EMITTER_2& ParticleEm
 			ParticleEmitter2.Data().Head = TRUE;
 			ParticleEmitter2.Data().Tail = TRUE;
 		}
-		else if(Token == "PriorityPlane,")
+		else if(Token == "PriorityPlane")
 		{
 			ParticleEmitter2.Data().PriorityPlane = TokenStream.ReadInt();
 			if (!TokenStream.ExpectChar(',')) return FALSE;

@@ -242,8 +242,9 @@ INT INTERPOLATOR::GetGlobalSequenceId()
 //+-----------------------------------------------------------------------------
 BOOL INTERPOLATOR::Save(DATA_OUT_STREAM& DataStream, BOOL ReverseXZ)
 {
+	//4b503252
 	std::list<INTERPOLATOR_NODE>::iterator i;
-
+	//01000000
 	DataStream.WriteDWord(static_cast<DWORD>(NodeList.size()));
 	switch(InterpolationType)
 	{
@@ -258,7 +259,7 @@ BOOL INTERPOLATOR::Save(DATA_OUT_STREAM& DataStream, BOOL ReverseXZ)
 			DataStream.WriteDWord(1);
 			break;
 		}
-
+		//02000000
 		case INTERPOLATION_TYPE_HERMITE:
 		{
 			DataStream.WriteDWord(2);
@@ -271,12 +272,13 @@ BOOL INTERPOLATOR::Save(DATA_OUT_STREAM& DataStream, BOOL ReverseXZ)
 			break;
 		}
 	}
-
+	//ffffffff
 	DataStream.WriteDWord((GlobalSequenceId == INVALID_INDEX) ? 0xFFFFFFFF : GlobalSequenceId);
 
 	i = NodeList.begin();
 	while(i != NodeList.end())
 	{
+		//00000000
 		DataStream.WriteDWord(i->Time);
 
 		switch(Type)
@@ -804,6 +806,61 @@ BOOL INTERPOLATOR::Save(TOKEN_OUT_STREAM& TokenStream, INT BaseTab)
 	TokenStream.WriteTab(BaseTab);
 	TokenStream.WriteLine("}");
 
+	return TRUE;
+}
+
+BOOL INTERPOLATOR::AddNodeNone(INT time, FLOAT value)
+{
+	INTERPOLATOR_NODE Node;
+	Node.Time = time;
+	Node.Vector.x = value;
+	Node.Vector.y = 0.0f;
+	Node.Vector.z = 0.0f;
+	Node.Vector.w = 0.0f;
+	NodeList.push_back(Node);
+	return TRUE;
+}
+
+BOOL INTERPOLATOR::AddNodeNone(INT time, D3DXVECTOR3 value)
+{
+	INTERPOLATOR_NODE Node;
+	Node.Time = time;
+	Node.Vector.x = value.x;
+	Node.Vector.y = value.y;
+	Node.Vector.z = value.z;
+	Node.Vector.w = 0.0f;
+	NodeList.push_back(Node);
+	return TRUE;
+}
+
+BOOL INTERPOLATOR::AddNodeHermite(INT time, D3DXVECTOR3 v1, D3DXVECTOR3 v2, D3DXVECTOR3 v3)
+{
+	INTERPOLATOR_NODE Node;
+	Node.Time = time;
+	Node.Vector.x = v1.x;
+	Node.Vector.y = v1.y;
+	Node.Vector.z = v1.z;
+	Node.Vector.w = 0.0f;
+	Node.InTan.x = v2.x;
+	Node.InTan.y = v2.y;
+	Node.InTan.z = v2.z;
+	Node.InTan.w = 0.0f;
+	Node.OutTan.x = v3.x;
+	Node.OutTan.y = v3.y;
+	Node.OutTan.z = v3.z;
+	Node.OutTan.w = 0.0f;
+	NodeList.push_back(Node);
+	return TRUE;
+}
+
+BOOL INTERPOLATOR::AddNodeHermite(INT time, FLOAT v1, FLOAT v2, FLOAT v3)
+{
+	INTERPOLATOR_NODE Node;
+	Node.Time = time;
+	Node.Vector.x = v1;
+	Node.InTan.x = v2;
+	Node.OutTan.x = v3;
+	NodeList.push_back(Node);
 	return TRUE;
 }
 

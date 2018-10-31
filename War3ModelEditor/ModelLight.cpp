@@ -38,7 +38,7 @@ VOID MODEL_LIGHT::Clear()
 //+-----------------------------------------------------------------------------
 INT MODEL_LIGHT::GetSize()
 {
-	return GetBaseSize() + LightData.Visibility.GetSize() + 48;
+	return GetBaseSize() + LightData.Visibility.GetSize() + LightData.Intensity.GetSize() + 48;
 }
 
 

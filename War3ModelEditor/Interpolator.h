@@ -109,6 +109,10 @@ class INTERPOLATOR
 		BOOL Load(DATA_IN_STREAM& DataStream, BOOL ReverseXZ = FALSE);
 
 		BOOL Save(TOKEN_OUT_STREAM& TokenStream, INT BaseTab = 1);
+		BOOL AddNodeNone(INT time, FLOAT value);
+		BOOL AddNodeNone(INT time, D3DXVECTOR3 value);
+		BOOL AddNodeHermite(INT time, D3DXVECTOR3 v1, D3DXVECTOR3 v2, D3DXVECTOR3 v3);
+		BOOL AddNodeHermite(INT time, FLOAT v1, FLOAT v2, FLOAT v3);
 		BOOL Load(TOKEN_IN_STREAM& TokenStream);
 
 		FLOAT GetScalar(CONST SEQUENCE_TIME& Time = SEQUENCE_TIME());
