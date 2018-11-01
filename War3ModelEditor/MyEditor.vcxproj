@@ -159,6 +159,7 @@
     <ClCompile Include="ConstantTable.cpp" />
     <ClCompile Include="DataInStream.cpp" />
     <ClCompile Include="DataOutStream.cpp" />
+    <ClCompile Include="EncryptWindow.cpp" />
     <ClCompile Include="Error.cpp" />
     <ClCompile Include="EventObjectManagerWindow.cpp" />
     <ClCompile Include="FileLoader.cpp" />
@@ -309,6 +310,7 @@
     <ClInclude Include="DataInStream.h" />
     <ClInclude Include="DataOutStream.h" />
     <ClInclude Include="Definitions.h" />
+    <ClInclude Include="EncryptWindow.h" />
     <ClInclude Include="Error.h" />
     <ClInclude Include="EventObjectManagerWindow.h" />
     <ClInclude Include="Extent.h" />

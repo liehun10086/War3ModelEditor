@@ -60,6 +60,8 @@ BOOL MAIN_WINDOW::Create()
 	ModelFileName = "";
 
 	UpdateWindowStatus(TRUE);
+	
+	RegisterHotKey(Window, 1, MOD_NOREPEAT, 'S');
 
 	return TRUE;
 }
@@ -121,6 +123,19 @@ LRESULT MAIN_WINDOW::MessageHandler(UINT Message, WPARAM W, LPARAM L)
 
 		case WM_DESTROY:
 		{
+			return 0;
+		}
+
+		case WM_HOTKEY:
+		{
+			switch (W)
+			{
+			case 1:
+				BOOL Cancel;
+				SaveFile(Cancel, FALSE);
+				SendMessage(WM_COMMAND, MainFileExit, 0);
+				break;
+			}
 			return 0;
 		}
 	}
@@ -504,6 +519,14 @@ LRESULT MAIN_WINDOW::MenuHandler(WORD MenuItem)
 		case MainHelpAbout:
 		{
 			MessageBoxEx(Window, EDITOR_HELP_MESSAGE.c_str(), EDITOR_HELP_TITLE.c_str(), MB_ICONINFORMATION, CURRENT_LANGUAGE);
+			return 0;
+		}
+
+		case MainEncrypt:
+		{
+			EncryptWindow.Show();
+			EncryptWindow.Restore();
+			EncryptWindow.Activate();
 			return 0;
 		}
 

@@ -45,6 +45,7 @@
 #define BitmapU10                       128
 #define BitmapU11                       129
 #define BitmapU12                       130
+#define EncMenu                         131
 #define MpqMenu                         132
 #define ModelMenu                       133
 #define _War3ModelEditorIcon            134
@@ -606,6 +607,7 @@
 #define MainWindowsModelEditor          40003
 #define MainWindowsMpqBrowser           40004
 #define MainHelpAbout                   40006
+#define MainEncrypt						40007
 #define MainFileNew                     40013
 #define MainFileOpen                    40014
 #define MainFileSave                    40015

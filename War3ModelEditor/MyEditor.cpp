@@ -39,6 +39,7 @@ BOOL Setup()
 	if(!SequenceManagerWindow.Create()) return FALSE;
 	if(!GlobalSequenceManagerWindow.Create()) return FALSE;
 	if(!MpqWindow.Create()) return FALSE;
+	if(!EncryptWindow.Create()) return FALSE;
 
 	if(!Keyboard.Setup(MainWindow.GetWindow(), FALSE)) return FALSE;
 	if(!ModelKeyboard.Setup(ModelWindow.GetWindow(), FALSE)) return FALSE;
@@ -69,6 +70,7 @@ VOID Shutdown()
 	Keyboard.Shutdown();
 
 	MpqWindow.Destroy();
+	EncryptWindow.Destroy();
 	GlobalSequenceManagerWindow.Destroy();
 	SequenceManagerWindow.Destroy();
 	MaterialManagerWindow.Destroy();

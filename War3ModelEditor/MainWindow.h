@@ -85,6 +85,7 @@ extern MAIN_WINDOW MainWindow;
 #include "TextureWindow.h"
 #include "ModelWindow.h"
 #include "MpqWindow.h"
+#include "EncryptWindow.h"
 #include "NodeManagerWindow.h"
 #include "CameraManagerWindow.h"
 #include "GeosetManagerWindow.h"

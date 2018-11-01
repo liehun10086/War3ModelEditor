@@ -432,6 +432,9 @@
     <ClCompile Include="WindowVerticesDialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="EncryptWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MyEditor.rc">
@@ -911,6 +914,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EncryptWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

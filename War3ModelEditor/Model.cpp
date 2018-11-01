@@ -1648,7 +1648,7 @@ VOID MODEL::GenerateObjectIds()
 	ObjectIdManager.ClearAllObjectIds();
 
 	CONTAINER_GENERATE_ID(ModelData.BoneContainer);
-	CONTAINER_GENERATE_ID(ModelData.BoneContainer);
+	//CONTAINER_GENERATE_ID(ModelData.BoneContainer);
 	CONTAINER_GENERATE_ID(ModelData.LightContainer);
 	CONTAINER_GENERATE_ID(ModelData.HelperContainer);
 	CONTAINER_GENERATE_ID(ModelData.AttachmentContainer);
@@ -1686,7 +1686,21 @@ VOID MODEL::GenerateObjectIds()
 	CONTAINER_RETRIEVE_ID(ModelData.BoneContainer, GeosetNode, GeosetId, InternalGeosetId);
 	CONTAINER_RETRIEVE_ID(ModelData.BoneContainer, GeosetAnimationNode, GeosetAnimationId, InternalGeosetAnimationId);
 	CONTAINER_RETRIEVE_ID(ModelData.GeosetAnimationContainer, GeosetNode, GeosetId, InternalGeosetId);
-	CONTAINER_RETRIEVE_ID(ModelData.ParticleEmitter2Container, TextureNode, TextureId, InternalTextureId);
+	//CONTAINER_RETRIEVE_ID(ModelData.ParticleEmitter2Container, TextureNode, TextureId, InternalTextureId);
+	for (INT _i = 0; _i < ModelData.ParticleEmitter2Container.GetTotalSize(); _i++)
+	{
+		if (ModelData.ParticleEmitter2Container.ValidIndex(_i))
+		{
+			if (ModelData.ParticleEmitter2Container[_i]->TextureNode.IsAttached())
+			{
+				ModelData.ParticleEmitter2Container[_i]->Data().TextureId = ModelData.ParticleEmitter2Container[_i]->TextureNode.GetObjectData()->Data().InternalTextureId;
+			}
+			else
+			{
+				ModelData.ParticleEmitter2Container[_i]->Data().TextureId = INVALID_INDEX;
+			}
+		}
+	}
 	CONTAINER_RETRIEVE_ID(ModelData.RibbonEmitterContainer, MaterialNode, MaterialId, InternalMaterialId);
 
 	for(i = 0; i < ModelData.GeosetContainer.GetTotalSize(); i++)

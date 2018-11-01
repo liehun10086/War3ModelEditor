@@ -47,6 +47,7 @@ INT MODEL_PARTICLE_EMITTER_2::GetSize()
 	INT LengthSize;
 	INT SpeedSize;
 	INT LatitudeSize;
+	INT VariationSize;
 
 	VisibilitySize = ParticleEmitter2Data.Visibility.GetSize();
 	EmissionRateSize = ParticleEmitter2Data.EmissionRate.GetSize();
@@ -54,8 +55,9 @@ INT MODEL_PARTICLE_EMITTER_2::GetSize()
 	LengthSize = ParticleEmitter2Data.Length.GetSize();
 	SpeedSize = ParticleEmitter2Data.Speed.GetSize();
 	LatitudeSize = ParticleEmitter2Data.Latitude.GetSize();
+	VariationSize = ParticleEmitter2Data.Variation.GetSize();
 
-	TotalSize = GetBaseSize() + 175 + VisibilitySize + EmissionRateSize + WidthSize + LengthSize + SpeedSize + LatitudeSize;
+	TotalSize = GetBaseSize() + 175 + VisibilitySize + EmissionRateSize + WidthSize + LengthSize + SpeedSize + LatitudeSize + VariationSize;
 
 	return TotalSize;
 }

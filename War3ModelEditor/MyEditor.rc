@@ -189,6 +189,7 @@ BEGIN
         MENUITEM "Help",                        MainHelpHelp
         MENUITEM "about",                       MainHelpAbout
     END
+	MENUITEM "º”√‹"								MainEncrypt
 END
 
 MpqMenu MENU DISCARDABLE 

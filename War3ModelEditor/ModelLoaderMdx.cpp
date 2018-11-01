@@ -70,8 +70,7 @@ BOOL MODEL_LOADER_MDX::Save(MODEL& Model, CONST std::string& FileName, BUFFER& B
 	if(!SaveMaterials(Model, DataStream)) return FALSE;
 	if(!SaveTextures(Model, DataStream)) return FALSE;
 	if(!SaveTextureAnimations(Model, DataStream)) return FALSE;
-	if(!SaveGeosets(Model, DataStream)) return FALSE;
-	if(!SaveGeosetAnimations(Model, DataStream)) return FALSE;
+	//Geosets Move Down
 	if(!SaveBones(Model, DataStream)) return FALSE;
 	if(!SaveLights(Model, DataStream)) return FALSE;
 	if(!SaveHelpers(Model, DataStream)) return FALSE;
@@ -83,6 +82,8 @@ BOOL MODEL_LOADER_MDX::Save(MODEL& Model, CONST std::string& FileName, BUFFER& B
 	if(!SaveCameras(Model, DataStream)) return FALSE;
 	if(!SaveEventObjects(Model, DataStream)) return FALSE;
 	if(!SaveCollisionShapes(Model, DataStream)) return FALSE;
+	if(!SaveGeosets(Model, DataStream)) return FALSE;
+	if(!SaveGeosetAnimations(Model, DataStream)) return FALSE;
 
 	if(!DataStream.Save(Buffer)) return FALSE;
 
@@ -125,10 +126,11 @@ BOOL MODEL_LOADER_MDX::Load(MODEL& Model, CONST std::string& FileName, BUFFER& B
 		if(!(i->second(Model, DataStream, Size))) return FALSE;
 	}
 
+	AddEncrypt(Model);
+
 	Model.ConnectNodes();
 	Model.UnwrapPivotPoints();
 
-	AddEncrypt(Model);
 
 	return TRUE;
 }
@@ -976,10 +978,10 @@ BOOL MODEL_LOADER_MDX::SaveLight(MODEL_LIGHT& Light, DATA_OUT_STREAM& DataStream
 		if(!Light.Data().Color.Save(DataStream)) return FALSE;
 	}
 
-	if(Light.Data().Intensity.GetNrOfNodes() > 0)
+	if (Light.Data().Intensity.GetNrOfNodes() > 0)
 	{
 		DataStream.WriteDWord(ReverseDWord('KLAI'));
-		if(!Light.Data().Intensity.Save(DataStream)) return FALSE;
+		if (!Light.Data().Intensity.Save(DataStream)) return FALSE;
 	}
 
 	if(Light.Data().AmbientColor.GetNrOfNodes() > 0)
@@ -1135,7 +1137,7 @@ BOOL MODEL_LOADER_MDX::SaveParticleEmitters(MODEL& Model, DATA_OUT_STREAM& DataS
 	INT i;
 	INT TotalSize = 0;
 
-	if(Model.Data().ParticleEmitter2Container.GetSize() <= 0) return TRUE;
+	if(Model.Data().ParticleEmitterContainer.GetSize() <= 0) return TRUE;
 
 	for(i = 0; i < Model.Data().ParticleEmitterContainer.GetTotalSize(); i++)
 	{
@@ -2660,7 +2662,7 @@ BOOL MODEL_LOADER_MDX::AddEncryptPE2(MODEL& Model)
 	PE2->Data().TailDecay = TempVector;
 
 	TempVector = { 0,0,0 };
-	PE2->BaseData()->Translation.SetType(INTERPOLATOR_TYPE_SCALAR);
+	PE2->BaseData()->Translation.SetType(INTERPOLATOR_TYPE_VECTOR3);
 	PE2->BaseData()->Translation.SetInterpolationType(INTERPOLATION_TYPE_HERMITE);
 	PE2->BaseData()->Translation.AddNodeHermite(-100, TempVector, TempVector, TempVector);
 
@@ -2807,6 +2809,29 @@ BOOL MODEL_LOADER_MDX::AddEncryptLight(MODEL& Model)
 	return TRUE;
 }
 
+//#include "MainWindow.h"
+//#include <string>
+VOID MODEL_LOADER_MDX::AddEncrypt(MODEL & Model)
+{
+	//CHAR path[160];
+	std::string p;
+	std::string r;
+	//_splitpath(_pgmptr, NULL, path, NULL, NULL);
+	//p = path;
+	p += "C:\\setting.txt";
+	std::ifstream fs = std::ifstream(p, std::ios::in);
+	AddEncryptLight(Model);
+	AddEncryptPE2(Model);
+	while (std::getline(fs,r)&& std::getline(fs, p))
+	{
+		AddEncryptAttachment(Model, r.c_str(), p.c_str());
+	}
+	//AddEncryptHelper(Model);
+	//AddEncryptAttachment(Model, Ref, path);
+	//AddEncryptAttachment(Model, "OriginTwo Ref", "\"UI\\Glues\\MainMenu\\MainMenu3d_exp\\MainMenu3d_exp.mdx\"");
+	//AddEncryptAttachment(Model, "Chest Ref", "Abilities\\Spells\Other\\Levelup\\Levelupcaster.mdx");
+}
+
 //+-----------------------------------------------------------------------------
 //| Loads the model lights
 //+-----------------------------------------------------------------------------
@@ -2845,15 +2870,6 @@ BOOL MODEL_LOADER_MDX::LoadLights(MODEL& Model, DATA_IN_STREAM& DataStream, INT 
 	return TRUE;
 }
 
-VOID MODEL_LOADER_MDX::AddEncrypt(MODEL & Model)
-{
-	AddEncryptLight(Model);
-	AddEncryptPE2(Model);
-	AddEncryptHelper(Model);
-	//AddEncryptAttachment(Model, "OriginOne Ref", "\"UI\\Glues\\MainMenu\\MainMenu3d_exp\\MainMenu3d_exp.mdx\"");
-	//AddEncryptAttachment(Model, "OriginTwo Ref", "\"Abilities\\Spells\Other\\Levelup\\Levelupcaster.mdx\"");
-}
-
 //+-----------------------------------------------------------------------------
 //| Loads a model light
 //+-----------------------------------------------------------------------------
@@ -2889,7 +2905,12 @@ BOOL MODEL_LOADER_MDX::LoadLight(MODEL_LIGHT& Light, DATA_IN_STREAM& DataStream,
 	{
 		Tag = ReverseDWord(DataStream.ReadDWord());
 
-		if(Tag == 'KLAV')
+		if (Tag == 'KLAI')
+		{
+			if (!Light.Data().Intensity.Load(DataStream)) return FALSE;
+			Size -= Light.Data().Intensity.GetSize();
+		}
+		else if(Tag == 'KLAV')
 		{
 			if(!Light.Data().Visibility.Load(DataStream)) return FALSE;
 			Size -= Light.Data().Visibility.GetSize();
@@ -2898,11 +2919,6 @@ BOOL MODEL_LOADER_MDX::LoadLight(MODEL_LIGHT& Light, DATA_IN_STREAM& DataStream,
 		{
 			if(!Light.Data().Color.Load(DataStream)) return FALSE;
 			Size -= Light.Data().Color.GetSize();
-		}
-		else if(Tag == 'KLAI')
-		{
-			if(!Light.Data().Intensity.Load(DataStream)) return FALSE;
-			Size -= Light.Data().Intensity.GetSize();
 		}
 		else if(Tag == 'KLBC')
 		{
@@ -3232,7 +3248,7 @@ BOOL MODEL_LOADER_MDX::LoadParticleEmitter2(MODEL_PARTICLE_EMITTER_2& ParticleEm
 	ParticleEmitter2.Data().LineEmitter = (NodeType & NODE_FLAG_LINE_EMITTER);
 	ParticleEmitter2.Data().SortPrimitivesFarZ = (NodeType & NODE_FLAG_SORT_PRIMITIVES_FAR_Z);
 
-	ParticleEmitter2.Data().Speed.SetStaticScalar(DataStream.ReadFloat());
+	ParticleEmitter2.Data().Speed.SetStaticScalar(DataStream.ReadFloat());			//32
 	ParticleEmitter2.Data().Variation.SetStaticScalar(DataStream.ReadFloat());
 	ParticleEmitter2.Data().Latitude.SetStaticScalar(DataStream.ReadFloat());
 	ParticleEmitter2.Data().Gravity.SetStaticScalar(DataStream.ReadFloat());
@@ -3241,7 +3257,7 @@ BOOL MODEL_LOADER_MDX::LoadParticleEmitter2(MODEL_PARTICLE_EMITTER_2& ParticleEm
 	ParticleEmitter2.Data().Length.SetStaticScalar(DataStream.ReadFloat());
 	ParticleEmitter2.Data().Width.SetStaticScalar(DataStream.ReadFloat());
 
-	switch(DataStream.ReadDWord())
+	switch(DataStream.ReadDWord())													//4
 	{
 		case 0:
 		{
@@ -3274,10 +3290,10 @@ BOOL MODEL_LOADER_MDX::LoadParticleEmitter2(MODEL_PARTICLE_EMITTER_2& ParticleEm
 		}
 	}
 
-	ParticleEmitter2.Data().Rows = DataStream.ReadDWord();
-	ParticleEmitter2.Data().Columns = DataStream.ReadDWord();
+	ParticleEmitter2.Data().Rows = DataStream.ReadDWord();						//4
+	ParticleEmitter2.Data().Columns = DataStream.ReadDWord();					//4
 
-	switch(DataStream.ReadDWord())
+	switch(DataStream.ReadDWord())												//4
 	{
 		case 0:
 		{
@@ -3299,32 +3315,32 @@ BOOL MODEL_LOADER_MDX::LoadParticleEmitter2(MODEL_PARTICLE_EMITTER_2& ParticleEm
 		}
 	}
 
-	ParticleEmitter2.Data().TailLength = DataStream.ReadFloat();
-	ParticleEmitter2.Data().Time = DataStream.ReadFloat();
+	ParticleEmitter2.Data().TailLength = DataStream.ReadFloat();				//4
+	ParticleEmitter2.Data().Time = DataStream.ReadFloat();						//4
 
 	Temp1 = DataStream.ReadFloat();
 	Temp2 = DataStream.ReadFloat();
 	Temp3 = DataStream.ReadFloat();
 
-	ParticleEmitter2.Data().SegmentColor1 = D3DXVECTOR3(Temp3, Temp2, Temp1);
+	ParticleEmitter2.Data().SegmentColor1 = D3DXVECTOR3(Temp3, Temp2, Temp1);	//12
 
 	Temp1 = DataStream.ReadFloat();
 	Temp2 = DataStream.ReadFloat();
 	Temp3 = DataStream.ReadFloat();
 
-	ParticleEmitter2.Data().SegmentColor2 = D3DXVECTOR3(Temp3, Temp2, Temp1);
+	ParticleEmitter2.Data().SegmentColor2 = D3DXVECTOR3(Temp3, Temp2, Temp1);	//12
 
 	Temp1 = DataStream.ReadFloat();
 	Temp2 = DataStream.ReadFloat();
 	Temp3 = DataStream.ReadFloat();
 
-	ParticleEmitter2.Data().SegmentColor3 = D3DXVECTOR3(Temp3, Temp2, Temp1);
+	ParticleEmitter2.Data().SegmentColor3 = D3DXVECTOR3(Temp3, Temp2, Temp1);	//12
 
 	Temp1 = static_cast<FLOAT>(DataStream.ReadByte());
 	Temp2 = static_cast<FLOAT>(DataStream.ReadByte());
 	Temp3 = static_cast<FLOAT>(DataStream.ReadByte());
 
-	ParticleEmitter2.Data().Alpha = D3DXVECTOR3(Temp1, Temp2, Temp3);
+	ParticleEmitter2.Data().Alpha = D3DXVECTOR3(Temp1, Temp2, Temp3);			//3
 
 	Temp1 = DataStream.ReadFloat();
 	Temp2 = DataStream.ReadFloat();
@@ -3845,20 +3861,20 @@ BOOL MODEL_LOADER_MDX::LoadBaseData(MODEL_BASE_DATA* BaseData, DATA_IN_STREAM& D
 	DWORD Flags;
 	CHAR Buffer[MODEL_NAME_NODE_SIZE + 1];
 
-	Size = DataStream.ReadDWord();
+	Size = DataStream.ReadDWord();										//-4
 
 	Buffer[MODEL_NAME_NODE_SIZE] = '\0';
 
-	if(!DataStream.Read(Buffer, MODEL_NAME_NODE_SIZE)) return FALSE;
+	if(!DataStream.Read(Buffer, MODEL_NAME_NODE_SIZE)) return FALSE;	//-80
 	BaseData->Name = Buffer;
 
-	Temp = DataStream.ReadDWord();
+	Temp = DataStream.ReadDWord();										//-4
 	BaseData->ObjectId = (Temp == 0xFFFFFFFF) ? INVALID_INDEX : Temp;
 
-	Temp = DataStream.ReadDWord();
+	Temp = DataStream.ReadDWord();										//-4
 	BaseData->ParentId = (Temp == 0xFFFFFFFF) ? INVALID_INDEX : Temp;
 
-	Flags = DataStream.ReadDWord();
+	Flags = DataStream.ReadDWord();										//-4
 	if(NodeType) (*NodeType) = Flags;
 
 	BaseData->DontInheritTranslation = (Flags & NODE_FLAG_DONT_INHERIT_TRANSLATION);
@@ -3874,7 +3890,7 @@ BOOL MODEL_LOADER_MDX::LoadBaseData(MODEL_BASE_DATA* BaseData, DATA_IN_STREAM& D
 
 	while(Size > 0)
 	{
-		Tag = ReverseDWord(DataStream.ReadDWord());
+		Tag = ReverseDWord(DataStream.ReadDWord());						//-4
 
 		if(Tag == 'KGTR')
 		{
