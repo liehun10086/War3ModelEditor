@@ -31,7 +31,7 @@ struct WINDOW_EDIT_INFO
 		ReadOnly = FALSE;
 
 		Parent = NULL;
-		Style = 0;
+		Style = WS_CHILD | WS_CLIPSIBLINGS | WS_VISIBLE | WS_BORDER;
 	}
 
 	std::string Text;

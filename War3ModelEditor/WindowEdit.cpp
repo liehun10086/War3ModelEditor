@@ -49,7 +49,7 @@ BOOL WINDOW_EDIT::Create(CONST WINDOW_EDIT_INFO& NewEditInfo)
 		return FALSE;
 	}
 
-	Font = CreateFont(0, 8, 0, 0, FW_NORMAL, 0, 0, 0, 0, 0, 0, 0, 0, "Fixedsys");
+	Font = CreateFont(0, 0, 0, 0, FW_NORMAL, 0, 0, 0, 0, 0, 0, 0, 0, "ºÚÌå");
 	if(Font != NULL) ::SendMessage(Window, WM_SETFONT, reinterpret_cast<WPARAM>(Font), 0);
 
 	return TRUE;

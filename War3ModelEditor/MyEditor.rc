@@ -1,4 +1,4 @@
-//Microsoft Developer Studio generated resource script.
+// Microsoft Visual C++ generated resource script.
 //
 #include "resource.h"
 
@@ -6,20 +6,18 @@
 /////////////////////////////////////////////////////////////////////////////
 //
 // Generated from the TEXTINCLUDE 2 resource.
-//
+// 
 #include "winres.h"
 
 /////////////////////////////////////////////////////////////////////////////
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Chinese (P.R.C.) resources
+// 中文(简体，中国) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
-#ifdef _WIN32
 LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
 #pragma code_page(936)
-#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -27,18 +25,18 @@ LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE DISCARDABLE 
+1 TEXTINCLUDE 
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE DISCARDABLE 
+2 TEXTINCLUDE 
 BEGIN
     "#include ""afxres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE DISCARDABLE 
+3 TEXTINCLUDE 
 BEGIN
     "\r\n"
     "\0"
@@ -54,94 +52,136 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-_War3ModelEditorIcon    ICON    DISCARDABLE     "ProgramIcons\\_War3ModelEditor.ico"
-IconUnknown             ICON    DISCARDABLE     "ProgramIcons\\unknown.ico"
-IconArchive             ICON    DISCARDABLE     "ProgramIcons\\archive.ico"
-IconAttachment          ICON    DISCARDABLE     "ProgramIcons\\attachment.ico"
-IconBone                ICON    DISCARDABLE     "ProgramIcons\\bone.ico"
-IconCollisionShape      ICON    DISCARDABLE     "ProgramIcons\\collisionshape.ico"
-IconEventObject         ICON    DISCARDABLE     "ProgramIcons\\eventobject.ico"
-IconFolder              ICON    DISCARDABLE     "ProgramIcons\\folder.ico"
-IconHelper              ICON    DISCARDABLE     "ProgramIcons\\helper.ico"
-IconImage               ICON    DISCARDABLE     "ProgramIcons\\image.ico"
-IconLight               ICON    DISCARDABLE     "ProgramIcons\\light.ico"
-IconModel               ICON    DISCARDABLE     "ProgramIcons\\model.ico"
-IconParticleEmitter     ICON    DISCARDABLE     "ProgramIcons\\particleemitter.ico"
-IconParticleEmitter2    ICON    DISCARDABLE     "ProgramIcons\\particleemitter2.ico"
-IconRibbonEmitter       ICON    DISCARDABLE     "ProgramIcons\\ribbonemitter.ico"
+_War3ModelEditorIcon    ICON                    "ProgramIcons\\_War3ModelEditor.ico"
+
+IconUnknown             ICON                    "ProgramIcons\\unknown.ico"
+
+IconArchive             ICON                    "ProgramIcons\\archive.ico"
+
+IconAttachment          ICON                    "ProgramIcons\\attachment.ico"
+
+IconBone                ICON                    "ProgramIcons\\bone.ico"
+
+IconCollisionShape      ICON                    "ProgramIcons\\collisionshape.ico"
+
+IconEventObject         ICON                    "ProgramIcons\\eventobject.ico"
+
+IconFolder              ICON                    "ProgramIcons\\folder.ico"
+
+IconHelper              ICON                    "ProgramIcons\\helper.ico"
+
+IconImage               ICON                    "ProgramIcons\\image.ico"
+
+IconLight               ICON                    "ProgramIcons\\light.ico"
+
+IconModel               ICON                    "ProgramIcons\\model.ico"
+
+IconParticleEmitter     ICON                    "ProgramIcons\\particleemitter.ico"
+
+IconParticleEmitter2    ICON                    "ProgramIcons\\particleemitter2.ico"
+
+IconRibbonEmitter       ICON                    "ProgramIcons\\ribbonemitter.ico"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Bitmap
 //
 
-BitmapU12               BITMAP  DISCARDABLE     "TeamColors\\U12.bmp"
-BitmapC00               BITMAP  DISCARDABLE     "TeamColors\\C00.bmp"
-BitmapC01               BITMAP  DISCARDABLE     "TeamColors\\C01.bmp"
-BitmapC02               BITMAP  DISCARDABLE     "TeamColors\\C02.bmp"
-BitmapC03               BITMAP  DISCARDABLE     "TeamColors\\C03.bmp"
-BitmapC04               BITMAP  DISCARDABLE     "TeamColors\\C04.bmp"
-BitmapC05               BITMAP  DISCARDABLE     "TeamColors\\C05.bmp"
-BitmapC06               BITMAP  DISCARDABLE     "TeamColors\\C06.bmp"
-BitmapC07               BITMAP  DISCARDABLE     "TeamColors\\C07.bmp"
-BitmapC08               BITMAP  DISCARDABLE     "TeamColors\\C08.bmp"
-BitmapC09               BITMAP  DISCARDABLE     "TeamColors\\C09.bmp"
-BitmapC10               BITMAP  DISCARDABLE     "TeamColors\\C10.bmp"
-BitmapC11               BITMAP  DISCARDABLE     "TeamColors\\C11.bmp"
-BitmapC12               BITMAP  DISCARDABLE     "TeamColors\\C12.bmp"
-BitmapU00               BITMAP  DISCARDABLE     "TeamColors\\U00.bmp"
-BitmapU01               BITMAP  DISCARDABLE     "TeamColors\\U01.bmp"
-BitmapU02               BITMAP  DISCARDABLE     "TeamColors\\U02.bmp"
-BitmapU03               BITMAP  DISCARDABLE     "TeamColors\\U03.bmp"
-BitmapU04               BITMAP  DISCARDABLE     "TeamColors\\U04.bmp"
-BitmapU05               BITMAP  DISCARDABLE     "TeamColors\\U05.bmp"
-BitmapU06               BITMAP  DISCARDABLE     "TeamColors\\U06.bmp"
-BitmapU07               BITMAP  DISCARDABLE     "TeamColors\\U07.bmp"
-BitmapU08               BITMAP  DISCARDABLE     "TeamColors\\U08.bmp"
-BitmapU09               BITMAP  DISCARDABLE     "TeamColors\\U09.bmp"
-BitmapU10               BITMAP  DISCARDABLE     "TeamColors\\U10.bmp"
-BitmapU11               BITMAP  DISCARDABLE     "TeamColors\\U11.bmp"
+BitmapU12               BITMAP                  "TeamColors\\U12.bmp"
+
+BitmapC00               BITMAP                  "TeamColors\\C00.bmp"
+
+BitmapC01               BITMAP                  "TeamColors\\C01.bmp"
+
+BitmapC02               BITMAP                  "TeamColors\\C02.bmp"
+
+BitmapC03               BITMAP                  "TeamColors\\C03.bmp"
+
+BitmapC04               BITMAP                  "TeamColors\\C04.bmp"
+
+BitmapC05               BITMAP                  "TeamColors\\C05.bmp"
+
+BitmapC06               BITMAP                  "TeamColors\\C06.bmp"
+
+BitmapC07               BITMAP                  "TeamColors\\C07.bmp"
+
+BitmapC08               BITMAP                  "TeamColors\\C08.bmp"
+
+BitmapC09               BITMAP                  "TeamColors\\C09.bmp"
+
+BitmapC10               BITMAP                  "TeamColors\\C10.bmp"
+
+BitmapC11               BITMAP                  "TeamColors\\C11.bmp"
+
+BitmapC12               BITMAP                  "TeamColors\\C12.bmp"
+
+BitmapU00               BITMAP                  "TeamColors\\U00.bmp"
+
+BitmapU01               BITMAP                  "TeamColors\\U01.bmp"
+
+BitmapU02               BITMAP                  "TeamColors\\U02.bmp"
+
+BitmapU03               BITMAP                  "TeamColors\\U03.bmp"
+
+BitmapU04               BITMAP                  "TeamColors\\U04.bmp"
+
+BitmapU05               BITMAP                  "TeamColors\\U05.bmp"
+
+BitmapU06               BITMAP                  "TeamColors\\U06.bmp"
+
+BitmapU07               BITMAP                  "TeamColors\\U07.bmp"
+
+BitmapU08               BITMAP                  "TeamColors\\U08.bmp"
+
+BitmapU09               BITMAP                  "TeamColors\\U09.bmp"
+
+BitmapU10               BITMAP                  "TeamColors\\U10.bmp"
+
+BitmapU11               BITMAP                  "TeamColors\\U11.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Menu
 //
 
-MainMenu MENU DISCARDABLE 
+MainMenu MENU
 BEGIN
-    POPUP "File"
+    POPUP "文件(&F)"
     BEGIN
-        MENUITEM "New",                         MainFileNew
+        MENUITEM "新建(&N)",                      MainFileNew
         MENUITEM SEPARATOR
-        MENUITEM "Open",                        MainFileOpen
-        MENUITEM "Save",                        MainFileSave
-        MENUITEM "Save as",                     MainFileSaveAs
-        MENUITEM "Close",                       MainFileClose
+        MENUITEM "打开(&O)",                      MainFileOpen
+        MENUITEM "保存(&S)",                      MainFileSave
+        MENUITEM "另存为(&A)",                     MainFileSaveAs
+        MENUITEM "关闭(&C)",                      MainFileClose
         MENUITEM SEPARATOR
-        MENUITEM "Import",                      MainFileImport
-        MENUITEM "Exit",                        MainFileExit
+        MENUITEM "导入(&I)",                      MainFileImport
+        MENUITEM "退出(&E)",                      MainFileExit
     END
-    POPUP "Recent Files"
+    POPUP "最近(&R)"
     BEGIN
-        MENUITEM "Clear",                       MainHistoryClear
+        MENUITEM "清空(&C)",                      MainHistoryClear
         MENUITEM SEPARATOR
     END
-    POPUP "Edit"
+    POPUP "编辑(&E)"
     BEGIN
-        MENUITEM "Reg Ext",                     MainEditRegisterExtentions
+        MENUITEM "系统关联(&R)",                    MainEditRegisterExtentions
         MENUITEM SEPARATOR
-        MENUITEM "Calc Ext",                    MainEditCalculateExtents
-        MENUITEM "Prop",                        MainEditProperties
-        MENUITEM "Mdl Prop",                    MainEditModelProperties
-        MENUITEM "Mdl Info",                    MainEditModelInfo
+        MENUITEM "重算点范围(&C)",                   MainEditCalculateExtents
+        MENUITEM SEPARATOR
+        MENUITEM "程序属性(&P)",                    MainEditProperties
+        MENUITEM "模型属性(&M)",                    MainEditModelProperties
+        MENUITEM "模型信息(&I)",                    MainEditModelInfo
     END
-    POPUP "View"
+    POPUP "视角(&V)"
     BEGIN
-        MENUITEM "800*600",                     MainViewResize
+        MENUITEM "重置窗口(&R)",                    MainViewResize
         MENUITEM SEPARATOR
-        MENUITEM "Rst Camera",                  MainViewResetCamera
+        MENUITEM "重置镜头(&C)",                    MainViewResetCamera
     END
-    POPUP "Team Color"
+    POPUP "队伍颜色(&T)"
     BEGIN
         MENUITEM "Red",                         MainTeamColorRed
         MENUITEM "Blue",                        MainTeamColorBlue
@@ -158,41 +198,37 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Black",                       MainTeamColorBlack
     END
-    POPUP "Windows"
+    POPUP "窗口(&W)"
     BEGIN
-        MENUITEM "Mdl Editor",                  MainWindowsModelEditor
-        MENUITEM "Ani Ctrl",                    MainWindowsAnimationController
-
+        MENUITEM "模型编辑(&O)",                    MainWindowsModelEditor
+        MENUITEM "动画查看(&A)",                    MainWindowsAnimationController
         MENUITEM SEPARATOR
-        MENUITEM "Node Manger",                 MainWindowsNodeManager
-        MENUITEM "Carma manger",                MainWindowsCameraManager
-        MENUITEM "Geosets man",                 MainWindowsGeosetManager
-        MENUITEM "GeosetAniMang",               MainWindowsGeosetAnimationManager
-
-        MENUITEM "Text Mang",                   MainWindowsTextureManager
-        MENUITEM "TexAniMan",                   MainWindowsTextureAnimationManager
-
-        MENUITEM "Mat Mang",                    MainWindowsMaterialManager
-        MENUITEM "Seq mang",                    MainWindowsSequenceManager
-        MENUITEM "GlobalSeqman",                MainWindowsGlobalSequenceManager
-
+        MENUITEM "节点(&N)",                      MainWindowsNodeManager
+        MENUITEM "相机(&C)",                      MainWindowsCameraManager
+        MENUITEM "多边形(&G)",                     MainWindowsGeosetManager
+        MENUITEM "多边形动(&E）",                    MainWindowsGeosetAnimationManager
+        MENUITEM "贴图(&T)",                      MainWindowsTextureManager
+        MENUITEM "贴图动画(&X)",                    MainWindowsTextureAnimationManager
+        MENUITEM "材质(&M)",                      MainWindowsMaterialManager
+        MENUITEM "动作管理(&S)",                    MainWindowsSequenceManager
+        MENUITEM "全局动作(&L)",                    MainWindowsGlobalSequenceManager
         MENUITEM SEPARATOR
-        MENUITEM "MpqBro",                      MainWindowsMpqBrowser
+        MENUITEM "MPQ浏览器(&B)",                  MainWindowsMpqBrowser
     END
-    POPUP "Extra"
+    POPUP "工具(&X)"
     BEGIN
-        MENUITEM "LadScreenCreat",              MainExtrasLoadingScreen
-        MENUITEM "ColorText",                   MainExtrasColoredText
+        MENUITEM "读取界面(&L)",                    MainExtrasLoadingScreen
+        MENUITEM "彩色文字(&C)",                    MainExtrasColoredText
     END
-    POPUP "Help"
+    POPUP "帮助(&H)"
     BEGIN
-        MENUITEM "Help",                        MainHelpHelp
-        MENUITEM "about",                       MainHelpAbout
+        MENUITEM "教程(&H)",                      MainHelpHelp
+        MENUITEM "关于(&A)",                      MainHelpAbout
     END
-	MENUITEM "加密"								MainEncrypt
+    MENUITEM "加密",                          MainEncrypt
 END
 
-MpqMenu MENU DISCARDABLE 
+MpqMenu MENU
 BEGIN
     POPUP "File"
     BEGIN
@@ -213,17 +249,17 @@ BEGIN
     END
 END
 
-LayerMenu2 MENU DISCARDABLE 
+LayerMenu2 MENU
 BEGIN
     MENUITEM "gdfg",                        65535
 END
 
-ManagerMenu MENU DISCARDABLE 
+ManagerMenu MENU
 BEGIN
     MENUITEM "dsf",                         65535
 END
 
-LayerMenu MENU DISCARDABLE 
+LayerMenu MENU
 BEGIN
     POPUP "fgdfg"
     BEGIN
@@ -231,7 +267,7 @@ BEGIN
     END
 END
 
-#endif    // Chinese (P.R.C.) resources
+#endif    // 中文(简体，中国) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

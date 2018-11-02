@@ -60,7 +60,7 @@ BOOL MAIN_WINDOW::Create()
 	ModelFileName = "";
 
 	UpdateWindowStatus(TRUE);
-	
+
 	RegisterHotKey(Window, 1, MOD_NOREPEAT, 'S');
 
 	return TRUE;
@@ -126,14 +126,30 @@ LRESULT MAIN_WINDOW::MessageHandler(UINT Message, WPARAM W, LPARAM L)
 			return 0;
 		}
 
+		case WM_KILLFOCUS:
+		{
+			UnregisterHotKey(Window, 1);
+			return 0;
+		}
+
+		case WM_SETFOCUS:
+		{
+			RegisterHotKey(Window, 1, MOD_NOREPEAT, 'S');
+			return 0;
+		}
+
 		case WM_HOTKEY:
 		{
 			switch (W)
 			{
 			case 1:
 				BOOL Cancel;
-				SaveFile(Cancel, FALSE);
-				SendMessage(WM_COMMAND, MainFileExit, 0);
+				if(::GetFocus() == Window)
+				{
+					SaveFile(Cancel, FALSE);
+					SendMessage(WM_COMMAND, MainFileExit, 0);
+				}else
+					return DefWindowProc(Window, Message, W, L);
 				break;
 			}
 			return 0;

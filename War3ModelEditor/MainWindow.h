@@ -13,6 +13,71 @@
 
 
 //+-----------------------------------------------------------------------------
+//| Pre-declared classes
+//+-----------------------------------------------------------------------------
+struct FILE_NODE;
+
+
+//+-----------------------------------------------------------------------------
+//| File node connection structure
+//+-----------------------------------------------------------------------------
+struct FILE_NODE_CONNECTION
+{
+	FILE_NODE_CONNECTION()
+	{
+		FirstChildNode = NULL;
+		LastChildNode = NULL;
+	}
+
+	FILE_NODE* FirstChildNode;
+	FILE_NODE* LastChildNode;
+};
+
+
+//+-----------------------------------------------------------------------------
+//| File node structure
+//+-----------------------------------------------------------------------------
+struct FILE_NODE
+{
+	FILE_NODE()
+	{
+		IsFolder = FALSE;
+		IconCollectionIndex = INVALID_INDEX;
+
+		FileNameAndPath = "";
+		FileName = "";
+		Extention = "";
+
+		FilterData.FilterList.resize(Filter.GetNrOfFilters(), FALSE);
+
+		NextNode = NULL;
+		PreviousNode = NULL;
+		ParentNode = NULL;
+
+		TreeViewItem = NULL;
+	}
+
+	BOOL IsFolder;
+	INT IconCollectionIndex;
+
+	std::string FileNameAndPath;
+	std::string FileName;
+	std::string Extention;
+
+	FILTER_DATA FilterData;
+
+	FILE_NODE* NextNode;
+	FILE_NODE* PreviousNode;
+	FILE_NODE* ParentNode;
+
+	FILE_NODE_CONNECTION FileConnection;
+	FILE_NODE_CONNECTION FolderConnection;
+
+	HTREEITEM TreeViewItem;
+};
+
+
+//+-----------------------------------------------------------------------------
 //| Main window class
 //+-----------------------------------------------------------------------------
 class MAIN_WINDOW : public WINDOW_FRAME

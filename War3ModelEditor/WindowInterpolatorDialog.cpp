@@ -25,7 +25,7 @@ HFONT WINDOW_INTERPOLATOR_DIALOG::StaticFont;
 //+-----------------------------------------------------------------------------
 WINDOW_INTERPOLATOR_DIALOG::WINDOW_INTERPOLATOR_DIALOG()
 {
-	StaticFont = CreateFont(0, 8, 0, 0, FW_NORMAL, 0, 0, 0, 0, 0, 0, 0, 0, "Fixedsys");
+	StaticFont = CreateFont(0, 8, 0, 0, FW_NORMAL, 0, 0, 0, 0, 0, 0, 0, 0, "ºÚÌå");
 }
 
 

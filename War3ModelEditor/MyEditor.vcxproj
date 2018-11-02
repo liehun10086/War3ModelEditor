@@ -310,6 +310,7 @@
     <ClInclude Include="DataInStream.h" />
     <ClInclude Include="DataOutStream.h" />
     <ClInclude Include="Definitions.h" />
+    <ClInclude Include="dirent.h" />
     <ClInclude Include="EncryptWindow.h" />
     <ClInclude Include="Error.h" />
     <ClInclude Include="EventObjectManagerWindow.h" />
@@ -475,6 +476,32 @@
     <Image Include="ProgramIcons\ribbonemitter.ico" />
     <Image Include="ProgramIcons\unknown.ico" />
     <Image Include="ProgramIcons\_War3ModelEditor.ico" />
+    <Image Include="TeamColors\C00.bmp" />
+    <Image Include="TeamColors\C01.bmp" />
+    <Image Include="TeamColors\C02.bmp" />
+    <Image Include="TeamColors\C03.bmp" />
+    <Image Include="TeamColors\C04.bmp" />
+    <Image Include="TeamColors\C05.bmp" />
+    <Image Include="TeamColors\C06.bmp" />
+    <Image Include="TeamColors\C07.bmp" />
+    <Image Include="TeamColors\C08.bmp" />
+    <Image Include="TeamColors\C09.bmp" />
+    <Image Include="TeamColors\C10.bmp" />
+    <Image Include="TeamColors\C11.bmp" />
+    <Image Include="TeamColors\C12.bmp" />
+    <Image Include="TeamColors\U00.bmp" />
+    <Image Include="TeamColors\U01.bmp" />
+    <Image Include="TeamColors\U02.bmp" />
+    <Image Include="TeamColors\U03.bmp" />
+    <Image Include="TeamColors\U04.bmp" />
+    <Image Include="TeamColors\U05.bmp" />
+    <Image Include="TeamColors\U06.bmp" />
+    <Image Include="TeamColors\U07.bmp" />
+    <Image Include="TeamColors\U08.bmp" />
+    <Image Include="TeamColors\U09.bmp" />
+    <Image Include="TeamColors\U10.bmp" />
+    <Image Include="TeamColors\U11.bmp" />
+    <Image Include="TeamColors\U12.bmp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

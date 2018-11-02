@@ -919,6 +919,9 @@
     <ClInclude Include="EncryptWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="dirent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="ProgramIcons\_War3ModelEditor.ico">
@@ -964,6 +967,84 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="ProgramIcons\unknown.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="TeamColors\U12.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="TeamColors\C00.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="TeamColors\C01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="TeamColors\C02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="TeamColors\C03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="TeamColors\C04.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="TeamColors\C05.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="TeamColors\C06.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="TeamColors\C07.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="TeamColors\C08.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="TeamColors\C09.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="TeamColors\C10.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="TeamColors\C11.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="TeamColors\C12.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="TeamColors\U00.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="TeamColors\U01.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="TeamColors\U02.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="TeamColors\U03.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="TeamColors\U04.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="TeamColors\U05.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="TeamColors\U06.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="TeamColors\U07.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="TeamColors\U08.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="TeamColors\U09.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="TeamColors\U10.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="TeamColors\U11.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

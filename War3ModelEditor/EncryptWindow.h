@@ -9,6 +9,7 @@
 //| Included files
 //+-----------------------------------------------------------------------------
 #include "MainWindow.h"
+#include "MpqWindow.h"
 
 //+-----------------------------------------------------------------------------
 //| Mpq window class
@@ -27,8 +28,27 @@ public:
 	virtual LRESULT ControlHandler(HWND Control, WORD Code);
 	virtual LRESULT NotifyHandler(HWND Control, UINT Code, NMHDR* Header);
 
+	BOOL OpenFolder(const std::string & path);
+
 protected:
 	WINDOW_BUTTON SelectButton;
+	WINDOW_EDIT PathEdit;
+	WINDOW_TREEVIEW FolderTree;
+
+	FILE_NODE RootNode;
+	FILE_NODE* CurrentlySelectedFile;
+	FILE_NODE* CurrentlySelectedPopupFile;
+
+	BOOL FolderLoaded;
+	std::string FolderPath;
+
+	VOID CloseFolder();
+
+	VOID UpdateTreeView();
+
+	BOOL LoadListFile(const std::string & path);
+
+	BOOL AddFileToFileTree(const std::string & FileName);
 
 };
 
